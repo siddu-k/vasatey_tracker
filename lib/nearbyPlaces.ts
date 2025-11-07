@@ -33,8 +33,15 @@ export async function getNearbyPlaces(
       body: query,
     });
 
-    const data = await response.json();
-    
+    if (!response.ok) {
+      console.error(`Overpass API request failed with status ${response.status}`);
+      return [];
+    }
+
+    // The API can return non-JSON on error (like HTML), so we get text first.
+    const responseText = await response.text();
+    const data = JSON.parse(responseText);
+
     const places: NearbyPlace[] = data.elements.map((element: any) => {
       const elementLat = element.lat || element.center?.lat;
       const elementLon = element.lon || element.center?.lon;
