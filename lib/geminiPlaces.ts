@@ -20,13 +20,19 @@ export async function getGeminiNearbyPlaces(
       return [];
     }
 
-    const prompt = `Find emergency services near coordinates ${lat}, ${lon} (within 5km radius).
-    Return a valid JSON array of nearby hospitals, police stations, and fire stations.
-    For each location, include: name, type ("hospital", "police", or "fire_station"), address, phone, and distance.
-    Return ONLY the JSON array.`;
+    const prompt = `Find the TOP 5 CLOSEST emergency services to coordinates ${lat}, ${lon}.THINK TWISE SEARCH WEB ADN GIVE , USE GOOGEL MAPS TOO
+I need a JSON array of the nearest hospitals, police stations, and fire stations within a 10km radius.
+The results MUST be sorted by distance, from closest to farthest.
 
-    // ✅ Updated endpoint & model name
-    const res = await fetch( // Using the correct latest flash model
+For each location, include:
+- name: Full name of the facility
+- type: "hospital", "police", or "fire_station"
+- address: Full address
+- phone: Contact phone number (if available, otherwise "Not available")
+
+Return ONLY the valid JSON array, with no other text before or after it.`;
+
+    const res = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
       {
         method: 'POST',
