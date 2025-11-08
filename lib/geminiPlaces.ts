@@ -1,7 +1,5 @@
 // Gemini AI integration for finding nearby places with contact information
 
-import { getNearbyPlaces, NearbyPlace } from './nearbyPlaces';
-
 export interface GeminiPlace {
   name: string;
   type: 'hospital' | 'police' | 'fire_station';
@@ -15,7 +13,12 @@ export async function getGeminiNearbyPlaces(
   lon: number
 ): Promise<GeminiPlace[]> {
   try {
-    const apiKey = 'AIzaSyBN_5zc031kOWR3gUkgFqavb2R3_PJHT2k';
+    const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+
+    if (!apiKey) {
+      console.warn('Gemini API key not configured. Using fallback method.');
+      return [];
+    }
 
     const prompt = `Find the TOP 5 CLOSEST emergency services to coordinates ${lat}, ${lon}.THINK TWISE SEARCH WEB ADN GIVE , USE GOOGEL MAPS TOO
 I need a JSON array of the nearest hospitals, police stations, and fire stations within a 10km radius.
