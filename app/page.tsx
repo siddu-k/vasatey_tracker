@@ -154,17 +154,12 @@ export default function Home() {
           let lat = alert.latitude!;
           let lon = alert.longitude!;
 
-          // A simple way to parse distance
-          const distanceMatch = p.distance.match(/(\d+\.?\d*)/);
-          const distance = distanceMatch ? parseFloat(distanceMatch[1]) : undefined;
-
           return {
             id: `gemini-${i}`,
             name: p.name,
             type: p.type,
             lat: lat, // Placeholder, ideally the AI would return coords
             lon: lon, // Placeholder
-            distance: distance,
           };
         });
         

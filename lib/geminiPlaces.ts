@@ -5,6 +5,7 @@ export interface GeminiPlace {
   type: 'hospital' | 'police' | 'fire_station';
   address: string;
   phone: string;
+  distance: string; // e.g., "1.2 km"
 }
 
 // New function to get a location name from coordinates
