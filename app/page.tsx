@@ -138,21 +138,46 @@ export default function Home() {
     setShowNearbyPlaces(true);
     setLoadingPlaces(true);
     setGeminiPlaces([]);
+    setNearbyPlaces([]); // Clear previous results
 
     try {
-      // Try Gemini AI first for places with contact info
+      // Try Gemini AI first
       const geminiResults = await getGeminiNearbyPlaces(alert.latitude, alert.longitude);
       
       if (geminiResults.length > 0) {
         setGeminiPlaces(geminiResults);
+        
+        // IMPORTANT: Convert GeminiPlace to NearbyPlace for map display
+        const placesForMap: NearbyPlace[] = geminiResults.map((p, i) => {
+          // A simple regex to extract coordinates if they are in the address
+          const coordMatch = p.address.match(/(\-?\d+\.\d+),\s*(\-?\d+\.\d+)/);
+          let lat = alert.latitude!;
+          let lon = alert.longitude!;
+
+          // A simple way to parse distance
+          const distanceMatch = p.distance.match(/(\d+\.?\d*)/);
+          const distance = distanceMatch ? parseFloat(distanceMatch[1]) : undefined;
+
+          return {
+            id: `gemini-${i}`,
+            name: p.name,
+            type: p.type,
+            lat: lat, // Placeholder, ideally the AI would return coords
+            lon: lon, // Placeholder
+            distance: distance,
+          };
+        });
+        
+        setNearbyPlaces(placesForMap);
+
       } else {
-        // Fallback to Overpass API if Gemini fails
+        // Fallback to Overpass API if Gemini fails or returns no results
         const places = await getNearbyPlaces(alert.latitude, alert.longitude);
         setNearbyPlaces(places);
       }
     } catch (error) {
       console.error('Error fetching nearby places:', error);
-      // Try fallback
+      // Fallback on error
       try {
         const places = await getNearbyPlaces(alert.latitude, alert.longitude);
         setNearbyPlaces(places);

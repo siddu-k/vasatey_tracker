@@ -89,3 +89,33 @@ function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: numbe
 function toRad(degrees: number): number {
   return degrees * (Math.PI / 180);
 }
+
+// New function for reverse geocoding using Nominatim (OpenStreetMap)
+export async function reverseGeocodeWithNominatim(lat: number, lon: number): Promise<string> {
+  try {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`,
+      {
+        headers: {
+          'User-Agent': 'VasateySec-Alert-Monitor/1.0 (contact@example.com)' // Replace with your app's info
+        }
+      }
+    );
+
+    if (!response.ok) {
+      console.error(`Nominatim API request failed with status ${response.status}`);
+      return "";
+    }
+
+    const data = await response.json();
+
+    if (data && data.display_name) {
+      return data.display_name;
+    } else {
+      return "Unknown location";
+    }
+  } catch (error) {
+    console.error('Error during reverse geocoding with Nominatim:', error);
+    return "";
+  }
+}
