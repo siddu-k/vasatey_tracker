@@ -14,40 +14,70 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-// Custom icons for different alert statuses
-const sentAlertIcon = new L.Icon({
-  iconUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAzMiA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2IDQ4QzE2IDQ4IDMyIDI4IDE2IDhDMTYgOCAwIDI4IDE2IDQ4WiIgZmlsbD0iI0VGNDQ0NCIvPgo8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSI4IiBmaWxsPSJ3aGl0ZSIvPgo8dGV4dCB4PSIxNiIgeT0iMjAiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNFRjQ0NDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj4hPC90ZXh0Pgo8L3N2Zz4=',
-  iconSize: [32, 48],
-  iconAnchor: [16, 48],
-  popupAnchor: [0, -48],
+// Custom icons for different alert statuses with better visibility
+const sentAlertIcon = new L.DivIcon({
+  html: `
+    <div style="position: relative; width: 24px; height: 24px;">
+      <div style="position: absolute; width: 24px; height: 24px; background: #FF0000; border: 2px solid white; border-radius: 50%;"></div>
+      <div style="position: absolute; color: white; font-weight: bold; font-size: 16px; width: 24px; text-align: center; line-height: 24px;">!</div>
+    </div>
+  `,
+  className: '',
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -12],
 });
 
-const acknowledgedAlertIcon = new L.Icon({
-  iconUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAzMiA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2IDQ4QzE2IDQ4IDMyIDI4IDE2IDhDMTYgOCAwIDI4IDE2IDQ4WiIgZmlsbD0iIzEwYjk4MSIvPgo8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSI4IiBmaWxsPSJ3aGl0ZSIvPgo8dGV4dCB4PSIxNiIgeT0iMjAiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMxMGI5ODEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj7inJM8L3RleHQ+Cjwvc3ZnPg==',
-  iconSize: [32, 48],
-  iconAnchor: [16, 48],
-  popupAnchor: [0, -48],
+const acknowledgedAlertIcon = new L.DivIcon({
+  html: `
+    <div style="position: relative; width: 24px; height: 24px;">
+      <div style="position: absolute; width: 24px; height: 24px; background: #00AA00; border: 2px solid white; border-radius: 50%;"></div>
+      <div style="position: absolute; color: white; font-weight: bold; font-size: 14px; width: 24px; text-align: center; line-height: 24px;">✓</div>
+    </div>
+  `,
+  className: '',
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -12],
 });
 
-const hospitalIcon = new L.Icon({
-  iconUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAzMiA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2IDQ4QzE2IDQ4IDMyIDI4IDE2IDhDMTYgOCAwIDI4IDE2IDQ4WiIgZmlsbD0iIzEwYjk4MSIvPgo8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSI4IiBmaWxsPSJ3aGl0ZSIvPgo8dGV4dCB4PSIxNiIgeT0iMjAiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMxMGI5ODEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj4rPC90ZXh0Pgo8L3N2Zz4=',
-  iconSize: [28, 42],
-  iconAnchor: [14, 42],
-  popupAnchor: [0, -42],
+const hospitalIcon = new L.DivIcon({
+  html: `
+    <div style="position: relative; width: 24px; height: 24px;">
+      <div style="position: absolute; width: 24px; height: 24px; background: #FFA500; border: 2px solid white; border-radius: 50%;"></div>
+      <div style="position: absolute; color: white; font-weight: bold; font-size: 14px; width: 24px; text-align: center; line-height: 24px;">H</div>
+    </div>
+  `,
+  className: '',
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -12],
 });
 
-const policeIcon = new L.Icon({
-  iconUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAzMiA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2IDQ4QzE2IDQ4IDMyIDI4IDE2IDhDMTYgOCAwIDI4IDE2IDQ4WiIgZmlsbD0iIzM4NjNmZiIvPgo8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSI4IiBmaWxsPSJ3aGl0ZSIvPgo8dGV4dCB4PSIxNiIgeT0iMjAiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiMzODYzZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5QPC90ZXh0Pgo8L3N2Zz4=',
-  iconSize: [28, 42],
-  iconAnchor: [14, 42],
-  popupAnchor: [0, -42],
+const policeIcon = new L.DivIcon({
+  html: `
+    <div style="position: relative; width: 24px; height: 24px;">
+      <div style="position: absolute; width: 24px; height: 24px; background: #0000FF; border: 2px solid white; border-radius: 50%;"></div>
+      <div style="position: absolute; color: white; font-weight: bold; font-size: 14px; width: 24px; text-align: center; line-height: 24px;">P</div>
+    </div>
+  `,
+  className: '',
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -12],
 });
 
-const fireIcon = new L.Icon({
-  iconUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAzMiA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2IDQ4QzE2IDQ4IDMyIDI4IDE2IDhDMTYgOCAwIDI4IDE2IDQ4WiIgZmlsbD0iI2Y5NzMxNiIvPgo8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSI4IiBmaWxsPSJ3aGl0ZSIvPgo8dGV4dCB4PSIxNiIgeT0iMjAiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNmOTczMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5GPC90ZXh0Pgo8L3N2Zz4=',
-  iconSize: [28, 42],
-  iconAnchor: [14, 42],
-  popupAnchor: [0, -42],
+const fireIcon = new L.DivIcon({
+  html: `
+    <div style="position: relative; width: 24px; height: 24px;">
+      <div style="position: absolute; width: 24px; height: 24px; background: #FF4500; border: 2px solid white; border-radius: 50%;"></div>
+      <div style="position: absolute; color: white; font-weight: bold; font-size: 14px; width: 24px; text-align: center; line-height: 24px;">F</div>
+    </div>
+  `,
+  className: '',
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -12],
 });
 
 interface MapViewProps {
@@ -80,8 +110,8 @@ export default function MapView({ alerts, selectedAlert, nearbyPlaces, showNearb
 
   if (!mounted) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-dark-lighter">
-        <div className="text-gray-400">Loading map...</div>
+      <div className="w-full h-full flex items-center justify-center bg-white">
+        <div className="text-yellow-600 animate-pulse">Loading map...</div>
       </div>
     );
   }
@@ -89,6 +119,26 @@ export default function MapView({ alerts, selectedAlert, nearbyPlaces, showNearb
   // Default center (India)
   const defaultCenter: [number, number] = [20.5937, 78.9629];
   const defaultZoom = 5;
+  
+  // Satellite map configuration
+  const satelliteLayerUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+  const satelliteAttribution = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+  const satelliteOptions = {
+    attribution: satelliteAttribution,
+    maxNativeZoom: 19,
+    maxZoom: 20,
+    minZoom: 2
+  };
+  
+  // Street map configuration (will show when zoomed in beyond satellite's maxNativeZoom)
+  const streetMapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  const streetMapAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+  const streetMapOptions = {
+    attribution: streetMapAttribution,
+    maxZoom: 20,
+    minZoom: 19, // Only show when zoomed in beyond satellite's maxNativeZoom
+    zIndex: 1 // Ensure it renders below satellite layer
+  };
 
   // Get valid alerts with coordinates
   const validAlerts = alerts.filter(
@@ -102,9 +152,16 @@ export default function MapView({ alerts, selectedAlert, nearbyPlaces, showNearb
       className="w-full h-full"
       zoomControl={true}
     >
+      {/* Satellite Layer */}
       <TileLayer
-        attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+        url={satelliteLayerUrl}
+        {...satelliteOptions}
+      />
+      
+      {/* Street Map Layer (only shows when zoomed in beyond satellite's maxNativeZoom) */}
+      <TileLayer
+        url={streetMapUrl}
+        {...streetMapOptions}
       />
       
       <MapController selectedAlert={selectedAlert} />
@@ -120,61 +177,111 @@ export default function MapView({ alerts, selectedAlert, nearbyPlaces, showNearb
           position={[alert.latitude!, alert.longitude!]}
           icon={alertIcon}
         >
-          <Popup maxWidth={400}>
-            <div className="p-2 min-w-[250px] max-w-[400px]">
-              <h3 className="font-bold text-lg mb-3 text-red-400">
-                🚨 Emergency Alert
+          <Popup maxWidth={400} className="[&_.leaflet-popup-content-wrapper]:bg-transparent [&_.leaflet-popup-content]:m-0 [&_.leaflet-popup-tip]:hidden [&_.leaflet-popup-close-button]:text-white [&_.leaflet-popup-close-button]:hover:bg-yellow-400 [&_.leaflet-popup-close-button]:hover:text-black [&_.leaflet-popup-close-button]:transition-colors">
+            <div className="p-4 min-w-[280px] max-w-[400px] bg-black/90 border-2 border-yellow-400 rounded-lg shadow-xl">
+              <h3 className="font-bold text-lg mb-3 text-yellow-400 flex items-center gap-2">
+                <span className="inline-block w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
+                Emergency Alert
               </h3>
               
               {/* User Details */}
-              <div className="space-y-1 text-sm mb-3">
-                <p><strong>Name:</strong> {alert.user_name}</p>
-                <p><strong>Phone:</strong> {alert.user_phone}</p>
-                <p><strong>Email:</strong> {alert.user_email}</p>
-                <p><strong>Type:</strong> {alert.alert_type}</p>
-                <p><strong>Status:</strong> 
-                  <span className={`ml-2 px-2 py-0.5 rounded text-xs ${
-                    alert.status === 'sent' ? 'bg-red-500' :
-                    alert.status === 'acknowledged' ? 'bg-yellow-500' :
-                    'bg-green-500'
+              <div className="space-y-2 text-sm text-white mb-3">
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <p className="text-xs text-gray-400">Name</p>
+                    <p className="font-medium">{alert.user_name}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-400">Phone</p>
+                    <p className="font-medium">{alert.user_phone}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400">Email</p>
+                  <p className="font-medium">{alert.user_email}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400">Alert Type</p>
+                  <p className="font-medium capitalize">{alert.alert_type?.toLowerCase()}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400">Status</p>
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                    alert.status === 'sent' ? 'bg-yellow-100 text-yellow-800' :
+                    alert.status === 'acknowledged' ? 'bg-blue-100 text-blue-800' :
+                    'bg-green-100 text-green-800'
                   }`}>
                     {alert.status}
                   </span>
-                </p>
-                <p className="text-xs text-gray-400 mt-2">
+                </div>
+                <p className="text-xs text-gray-500 mt-2">
                   {new Date(alert.created_at).toLocaleString()}
                 </p>
               </div>
 
               {/* Photos */}
               {(alert.front_photo_url || alert.back_photo_url) && (
-                <div className="mt-3 border-t border-gray-600 pt-3">
-                  <p className="text-xs font-semibold mb-2 text-gray-300">📸 PHOTOS:</p>
-                  <div className="grid grid-cols-2 gap-2">
+                <div className="mt-3 pt-3 border-t-2 border-yellow-400/50">
+                  <div className="flex items-center gap-2 mb-3">
+                    <svg className="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span className="text-xs font-medium text-yellow-400">PHOTOS</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
                     {alert.front_photo_url && (
-                      <div>
-                        <p className="text-xs text-gray-400 mb-1">Front Camera</p>
-                        <img 
-                          src={alert.front_photo_url} 
-                          alt="Front camera" 
-                          className="w-full h-24 object-cover rounded border border-gray-600 cursor-pointer hover:opacity-80"
-                          onClick={() => window.open(alert.front_photo_url!, '_blank')}
-                        />
+                      <div className="group">
+                        <div className="relative overflow-hidden rounded-lg border-2 border-yellow-400/20 bg-black/50">
+                          <img 
+                            src={alert.front_photo_url} 
+                            alt="Front camera" 
+                            className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                window.open(alert.front_photo_url!, '_blank');
+                              }}
+                              className="p-2 bg-yellow-500 rounded-full text-black hover:bg-yellow-400 transition-colors"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <p className="text-xs text-yellow-400/80 mt-1 text-center">Front View</p>
                       </div>
                     )}
                     {alert.back_photo_url && (
-                      <div>
-                        <p className="text-xs text-gray-400 mb-1">Back Camera</p>
-                        <img 
-                          src={alert.back_photo_url} 
-                          alt="Back camera" 
-                          className="w-full h-24 object-cover rounded border border-gray-600 cursor-pointer hover:opacity-80"
-                          onClick={() => window.open(alert.back_photo_url!, '_blank')}
-                        />
+                      <div className="group">
+                        <div className="relative overflow-hidden rounded-lg border-2 border-yellow-400/20 bg-black/50">
+                          <img 
+                            src={alert.back_photo_url} 
+                            alt="Back camera" 
+                            className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                window.open(alert.back_photo_url!, '_blank');
+                              }}
+                              className="p-2 bg-yellow-500 rounded-full text-black hover:bg-yellow-400 transition-colors"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <p className="text-xs text-yellow-400/80 mt-1 text-center">Back View</p>
                       </div>
                     )}
                   </div>
-                  <p className="text-xs text-gray-500 mt-2 italic">Click image to view full size</p>
                 </div>
               )}
             </div>
@@ -196,14 +303,12 @@ export default function MapView({ alerts, selectedAlert, nearbyPlaces, showNearb
             icon={icon}
           >
             <Popup>
-              <div className="p-2">
-                <h3 className="font-bold mb-1">{place.name}</h3>
-                <p className="text-sm capitalize">{place.type.replace('_', ' ')}</p>
-                {place.distance && (
-                  <p className="text-xs text-gray-400 mt-1">
-                    {place.distance.toFixed(2)} km away
-                  </p>
-                )}
+              <div className="p-3 bg-gray-900 border border-gray-700 rounded-lg shadow-lg">
+                <h3 className="font-bold text-yellow-400 text-sm">{place.name}</h3>
+                <div className="flex items-center gap-1 mt-1">
+                  <span className="inline-block w-2 h-2 rounded-full bg-yellow-400"></span>
+                  <span className="text-xs text-gray-300 capitalize">{place.type.replace('_', ' ')}</span>
+                </div>
               </div>
             </Popup>
           </Marker>

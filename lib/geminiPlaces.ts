@@ -5,7 +5,6 @@ export interface GeminiPlace {
   type: 'hospital' | 'police' | 'fire_station';
   address: string;
   phone: string;
-  distance: string;
 }
 
 // New function to get a location name from coordinates
@@ -59,15 +58,13 @@ export async function getGeminiNearbyPlaces(
     // 2. Use the location name in the prompt for more accuracy
     const prompt = `You are an emergency response assistant. Find the TOP 3 CLOSEST emergency services to "${locationName}" (coordinates: ${lat}, ${lon}).
 Search the web and use map data to ensure accuracy.
-I need a JSON array of the nearest hospitals, police stations, and fire stations within a 10km radius of the coordinates.
-The results MUST be sorted by distance, from closest to farthest.
+I need a JSON array of the nearest hospitals, police stations, and fire stations.
 
 For each location, include:
 - name: Full name of the facility
 - type: "hospital", "police", or "fire_station"
 - address: Full street address
 - phone: Local contact phone number (if available, otherwise "Not available")
-- distance: A string indicating the distance from the coordinates (e.g., "1.2 km")
 
 Return ONLY the valid JSON array, with no other text, comments, or markdown before or after it.`;
 
